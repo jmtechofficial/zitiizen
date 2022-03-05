@@ -8,8 +8,9 @@ let _BODY_CLASS = "responsive-enabled";
 
 
 
-document.querySelector("html").classList.add(_HTML_CLASSES);
+document.querySelector("html").classList.add(_HTML_CLASSES.replaceAll("  ", " ").split(" "));
 document.body.classList.add(_BODY_CLASS);
 document.head.append(_HEAD);
 document.body.prepend(_BODY);
+
 
