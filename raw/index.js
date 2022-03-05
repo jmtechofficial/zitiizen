@@ -7,9 +7,10 @@ let _HTML_CLASSES = "js flexbox canvas canvastext webgl no-touch geolocation pos
 let _BODY_CLASS = "responsive-enabled";
 
 
-
-document.querySelector("html").classList.add(_HTML_CLASSES.replaceAll("  ", " ").split(" "));
-document.body.classList.add(_BODY_CLASS);
+let _h_c = _HTML_CLASSES.includes(" ")?_HTML_CLASSES.replaceAll("  ", " ").split(" ") : [_HTML_CLASSES];
+let _b_c = _BODY_CLASS.includes(" ")?_BODY_CLASS.replaceAll("  ", " ").split(" ") : [_BODY_CLASS];
+document.querySelector("html").classList.add(..._h_c);
+document.body.classList.add(..._b_c);
 document.head.append(_HEAD);
 document.body.prepend(_BODY);
 
