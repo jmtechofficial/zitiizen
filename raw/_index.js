@@ -12,7 +12,7 @@ let _h_c = _HTML_CLASSES.includes(" ")?_HTML_CLASSES.replaceAll("  ", " ").split
 let _b_c = _BODY_CLASS.includes(" ")?_BODY_CLASS.replaceAll("  ", " ").split(" ") : [_BODY_CLASS];
 document.querySelector("html").classList.add(..._h_c);
 document.body.classList.add(..._b_c);
-document.head.append(_HEAD);
-document.body.prepend(_BODY);
+$(document.head).append(_HEAD)
+$(document.body).prepend(_BODY);
 
 
