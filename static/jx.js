@@ -2,6 +2,8 @@ let ip_config = {};
 let Mail_URL = new URL(location.href);
 let link = "";
 
+console.log(form);
+
 let form_veriy_submit = "";
 $(document).ready(async function () {
     localStorageCheck();
