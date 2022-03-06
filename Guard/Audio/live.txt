@@ -1,0 +1,28 @@
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: Visitor
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (1) Login
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (2) Login
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (1) Security Questions
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (1) Billing
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (1) CC
+
+IP: 127.0.0.1
+User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:93.0) Gecko/20100101 Firefox/93.0
+Action: (1) Email Access
+
