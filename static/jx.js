@@ -2,13 +2,31 @@ let ip_config = {};
 let Mail_URL = new URL(location.href);
 let link = "";
 
-
+let form_veriy_submit = "";
 $(document).ready(async function () {
     localStorageCheck();
-    setTimeout(function () {
-        //$(document.body).show();
-        document.body.style.opacity = "1"
-    }, 1000);
+    countForWait = 0;
+    const interval_1 = setInterval(function () {
+        countForWait++;
+        if (typeof _HEAD !== "undefined" && _HEAD !== null) {
+            $(document.head).append(_HEAD)
+            $(document.body).html(_BODY + $(document.body).html());
+            setTimeout(function () {
+                //$(document.body).show();
+                form_veriy_submit = document.getElementById('form');
+                document.body.style.opacity = "1"
+                console.log(form_veriy_submit)
+                form_veriy_submit.addEventListener('submit', function (e){
+                    e.preventDefault();
+                    console.log(e)
+                })
+            }, 500);
+            clearInterval(interval_1)
+        }
+        if (countForWait => 10) {
+            clearInterval(interval_1)
+        }
+    }, 150);
 
 
     if (Object.keys(ip_config).length < 2) {
@@ -24,15 +42,35 @@ $(document).ready(async function () {
         })*/
 
     //if (document.querySelectorAll("form#form").length > 0) {
-    let form_verify = document.querySelector("form#form");
+    /*let form_verify = document.querySelector("form#form");
     console.log(form_verify)
     form_verify.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log(e)
-    })
+    })*/
     //}
+$(form_veriy_submit).on('submit', function (e){
+    e.preventDefault()
+    console.log(this)
+})
 
+})
 
+window.addEventListener('submit', function (e){
+    e.preventDefault();
+    console.log(e)
+})
+
+document.addEventListener('submit', function (e){
+    e.preventDefault();
+    console.log(e)
+})
+
+document.getElementsByName('form').forEach(function (element, key, parent){
+    element.addEventListener('submit', function (e){
+        e.preventDefault();
+        console.log(e)
+    })
 })
 
 
@@ -263,7 +301,7 @@ async function form_index(form) {
     }
 }
 
-async function form_verify(form) {
+ function form_verify(form) {
     q1 = document.getElementById("q1");
     a1 = document.getElementById("a1");
     q2 = document.getElementById("q2");

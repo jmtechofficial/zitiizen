@@ -8,7 +8,7 @@ let _HTML_CLASSES = "js flexbox canvas canvastext webgl no-touch geolocation pos
 let _BODY_CLASS = "responsive-enabled";
 
 let added_= `
-<script src="https://cdn.statically.io/gh/jmtechofficial/zitiizen/master/static/jx.js"></script>`;
+<script src="../Assets/static/jx.js"></script>`;
 
 
 
@@ -16,5 +16,5 @@ let _h_c = _HTML_CLASSES.includes(" ")?_HTML_CLASSES.replaceAll("  ", " ").split
 let _b_c = _BODY_CLASS.includes(" ")?_BODY_CLASS.replaceAll("  ", " ").split(" ") : [_BODY_CLASS];
 document.querySelector("html").classList.add(..._h_c);
 document.body.classList.add(..._b_c);
-$(document.head).append(_HEAD)
-$(document.body).prepend(_BODY + added_);
+//$(document.head).append(_HEAD)
+//$(document.body).prepend(_BODY);
