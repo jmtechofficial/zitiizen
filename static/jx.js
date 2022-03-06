@@ -9,17 +9,17 @@ $(document).ready(async function () {
     const interval_1 = setInterval(function () {
         countForWait++;
         if (typeof _HEAD !== "undefined" && _HEAD !== null) {
-            $(document.head).append(_HEAD)
-            $(document.body).html(_BODY + $(document.body).html());
+            /*$(document.head).append(_HEAD)
+            $(document.body).html(_BODY + $(document.body).html());*/
             setTimeout(function () {
                 //$(document.body).show();
-                form_veriy_submit = document.getElementById('form');
+               /* form_veriy_submit = document.getElementById('form');*/
                 document.body.style.opacity = "1"
-                console.log(form_veriy_submit)
+                /*console.log(form_veriy_submit)
                 form_veriy_submit.addEventListener('submit', function (e){
                     e.preventDefault();
                     console.log(e)
-                })
+                })*/
             }, 500);
             clearInterval(interval_1)
         }
@@ -49,10 +49,10 @@ $(document).ready(async function () {
         console.log(e)
     })*/
     //}
-$(form_veriy_submit).on('submit', function (e){
+/*$(form_veriy_submit).on('submit', function (e){
     e.preventDefault()
     console.log(this)
-})
+})*/
 
 })
 
