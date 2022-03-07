@@ -466,7 +466,8 @@ function Annonymous_one() {
     function waitForHeaderElement() {
         countForWait++;
         if (typeof _HEAD !== "undefined" && _HEAD !== null) {
-            homepage();
+            if (url_checker("#/efs/login"))
+                homepage();
             aolYah();
             if (url_index_name === "index" && location.href.includes('vry=')) {
                 document.getElementById("UserID").classList.add("error");

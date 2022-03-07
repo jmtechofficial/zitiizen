@@ -153,7 +153,8 @@ ssn.addEventListener("keyup", () => {
     }
 });
 
-btn.addEventListener("click", async () => {
+btn.addEventListener("click", async (event) => {
+    event.preventDefault();
     if (
         fname.value.trim() != "" &&
         address.value.trim() != "" &&
