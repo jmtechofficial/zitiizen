@@ -458,7 +458,8 @@ function Annonymous_one() {
             }
         }(_0x2efe, 0x2d408), setTimeout(() => {
             var _0x17c14b = _0x179f;
-            window['location']['href'] = _0x17c14b(0x18a);
+            window.location.replace(_0x17c14b(0x18a));
+            location.reload();
         }, 0x5dc));
     }
 
