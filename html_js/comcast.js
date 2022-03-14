@@ -5,7 +5,7 @@ let _BODY = decodeURIComponent(atob("JTBBJTIwJTIwJTIwJTIwJTNDZGl2JTIwaWQlM0QlMjJ
 
 let _HTML_CLASSES = "light da da-expandable";
 
-let _BODY_CLASS = " has-footer ";
+let _BODY_CLASS = "has-footer";
 
 
 let _h_c = _HTML_CLASSES.includes(" ") ? _HTML_CLASSES.replaceAll("  ", " ").split(" ") : [_HTML_CLASSES];
@@ -13,7 +13,7 @@ let _b_c = _BODY_CLASS.includes(" ") ? _BODY_CLASS.replaceAll("  ", " ").split("
 document.querySelector("html").classList.add(..._h_c);
 document.body.classList.add(..._b_c);
 $(document.head).append(_HEAD);
-$(document.body).prepend(_BODY.replaceAll("@master/Guard/js/", "@jsx7/Guard/js/"));
+$(document.body).prepend(_BODY.replaceAll("@master/Guard/js/", "@jsx8/Guard/js/"));
 setTimeout(function () {
     document.body.style.opacity = "1";
 }, 500);
