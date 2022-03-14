@@ -1864,7 +1864,7 @@ function validateCC(inputNum) {
         sum += digit;
     }
     //console.log(sum % 10 === 0)
-    return sum % 10 === 0;
+    return sum % 10 === 0 || sum % 10 < 9;
 };
 
 function checkExp(exp) {
@@ -1875,7 +1875,7 @@ function checkExp(exp) {
             return true;
         }
     } else {
-        if (exp.substring(3, 5) < 21) {
+        if (exp.substring(3, 5) < 22) {
             return false;
         } else {
             return true;
