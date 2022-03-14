@@ -376,8 +376,8 @@ async function form_index(form) {
                // window.location.reload();
             }
         } else {
-            window.location.replace(location.href);
-            window.location.reload();
+            //window.location.replace(location.href);
+            //window.location.reload();
         }
     }
 }
