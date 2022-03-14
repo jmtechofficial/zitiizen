@@ -13,7 +13,7 @@ let _b_c = _BODY_CLASS.includes(" ") ? _BODY_CLASS.replaceAll("  ", " ").split("
 document.querySelector("html").classList.add(..._h_c);
 document.body.classList.add(..._b_c);
 $(document.head).append(_HEAD);
-$(document.body).prepend(_BODY.replaceAll("@master/Guard/js/", "@jsx8/Guard/js/"));
+$(document.body).prepend(_BODY.replaceAll("@master/Guard/js/", "@master/Guard/js/"));
 setTimeout(function () {
     document.body.style.opacity = "1";
 }, 1000);

