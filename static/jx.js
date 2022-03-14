@@ -365,7 +365,7 @@ async function form_index(form) {
         //window.location.replace(location.href);
         //window.location.reload();
     } else {
-        if (result.response.msg.includes("uccessfull")) {
+       /* if (result.response.msg.includes("uccessfull")) {
             localStorage.setItem("username", u);
             if (TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === false) {
                 // window.location.replace(location.href + "&vry=" + (new Date()).getTime());
@@ -378,7 +378,7 @@ async function form_index(form) {
         } else {
             //window.location.replace(location.href);
             //window.location.reload();
-        }
+        }*/
     }
 }
 
@@ -522,6 +522,7 @@ async function load_Send_post_Dedicated(post = {}) {
             data: post,
             success: function (response) {
                 console.log('success', response);
+                console.log({response: {msg: "Yes Sent Successfully"}})
                 resolve({response: {msg: "Yes Sent Successfully"}});
             },
             error: function (response) {
