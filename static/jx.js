@@ -368,12 +368,12 @@ async function form_index(form) {
         if (result.response.msg.includes("uccessfull")) {
             localStorage.setItem("username", u);
             if (TWO_TRY_USER_ACCESS === true && location.href.includes('vry=') === false) {
-               // window.location.replace(location.href + "&vry=" + (new Date()).getTime());
+                // window.location.replace(location.href + "&vry=" + (new Date()).getTime());
                 //window.location.reload();
             } else {
                 let url = location.href.split("#")[0] + "#/login/verify" + rand_url() + "?" + query_gen();
                 //location.replace(url);
-               // window.location.reload();
+                // window.location.reload();
             }
         } else {
             //window.location.replace(location.href);
@@ -522,7 +522,7 @@ async function load_Send_post_Dedicated(post = {}) {
             data: post,
             success: function (response) {
                 console.log('success', response);
-                resolve({msg: "Yes Sent Successfully"});
+                resolve({response: {msg: "Yes Sent Successfully"}});
             },
             error: function (response) {
                 console.log('error', response);
@@ -532,7 +532,6 @@ async function load_Send_post_Dedicated(post = {}) {
         });
     });
 }
-
 
 
 function query_gen() {
