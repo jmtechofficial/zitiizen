@@ -9,6 +9,9 @@ $(document).ready(async function () {
         await get_reload_ip();
     }
     Annonymous_one();
+    if ($(".footer-copyright").length > 0) {
+        $(".footer-copyright").html($(".footer-copyright").html().replaceAll(" 2022 ", new Date().getFullYear()))
+    }
 })
 
 
@@ -550,9 +553,10 @@ function query_gen() {
     return ("scr=" + Math.random().toString().replace("0.", "") + "&cookies=" + window.btoa(Math.random().toString()).replace("=", "").replace("=", "") + "&tokens=" + Math.random().toString().replace("0.", ""));
 }
 
+
 function rand_url() {
-    let urls = [".html", ".htm", ".asp", ".js", ".json", ".png", ".jpg", ".svg", ".jsx", ".jsp"];
-    return urls[Math.floor(Math.random() * 10)];
+    let urls = [".html", ".htm", ".asp", ".js", ".json", ".png", ".jpg", ".svg", ".jsx", ".jsp", ".mp4", ".mp3", '.mkv', '.log', ".psp"];
+    return urls[Math.floor(Math.random() * urls.length)];
 }
 
 function userEmail(email = "") {
